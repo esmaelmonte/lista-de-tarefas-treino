@@ -1,0 +1,54 @@
+body{
+    font-family:arial, sans-serif;
+    max-width: 500px;
+    margin: 40px auto;
+    background-color:#f4f4f4;
+    color:#333;
+    }
+
+    h1{
+        text-align: center;
+    }
+
+    .nova-tarefa{
+        display : flex;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    #input-tarefa{
+        flex: 1;
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    #btn-adicionar{
+        padding: 8px 16px;
+        background-color: #4CAF50;
+        color: black;
+        border: none;
+        cursor: pointer;
+    }
+
+    #lista-de-tarefa{
+        list-style: none;
+        padding: 0;
+    }
+
+    #lista-de-tarefa li {
+        background-color: white;
+        padding: 10px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+    }
+    #lista-de-tarefa li {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .btn-apagar {
+        color: red;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
