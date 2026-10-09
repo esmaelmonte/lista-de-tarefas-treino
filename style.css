@@ -2,7 +2,8 @@ body{
     font-family:arial, sans-serif;
     max-width: 500px;
     margin: 40px auto;
-    background-color:#f4f4f4;
+    background: linear-gradient(135deg, #a8c0ff, #e2d1f9);
+    min-height: 100vh;
     color:#333;
     }
 

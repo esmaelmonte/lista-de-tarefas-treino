@@ -1,27 +1,31 @@
 let tarefas =[];
-const tarefasSalvas = localStorage.getItem('tarefas');
-if (tarefasSalvas) {
-    tarefas = JSON.parse(tarefasSalvas);
-}
+
 const inputTarefa = document.getElementById('input-tarefa');
 const btnAdicionar = document.getElementById('btn-adicionar');
 const listaTarefas = document.getElementById('lista-de-tarefa');
 
-function adicionarTarefa() {
+async function adicionarTarefa() {
     const texto = inputTarefa.value.trim();
 
-    if (texto ===''){
+    if(texto === '') {
         return;
     }
 
-    tarefas.push({texto: texto, concluida: false});
+    await fetch('http://localhost:3000/tarefas', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'  
+        },
+        body: JSON.stringify({ texto: texto })
+    });
+
     inputTarefa.value = '';
+
+    carregarTarefas();
 }
 
 function renderizarTarefa(){
     listaTarefas.innerHTML = '';
-
-    localStorage.setItem('tarefas', JSON.stringify(tarefas));
 
     tarefas.forEach (function (tarefa,index){
         const li = document.createElement('li');
@@ -34,31 +38,49 @@ function renderizarTarefa(){
         btnApagar.textContent = 'X';
         btnApagar.className = 'btn-apagar';
 
-        btnApagar.addEventListener('click', function(evento){
+        btnApagar.addEventListener('click', async function(evento){
             evento.stopPropagation();
-            tarefas.splice(index, 1);
-            renderizarTarefa();
+
+            await fetch('http://localhost:3000/tarefas/' + tarefa.id, {
+                method: 'DELETE',
+            });
+
+            carregarTarefas();
+            
         });
         li.appendChild(btnApagar);
 
-        li.addEventListener('click', function () {
-            tarefas[index].concluida = !tarefas[index].concluida;
-            renderizarTarefa();
+        li.addEventListener('click', async function (){
+            await fetch('http://localhost:3000/tarefas/' + tarefa.id, {
+                method: 'PUT',
+           
+             });
+            carregarTarefas();
+
         });
+            
 
         listaTarefas.appendChild(li);
     });
 }
     btnAdicionar.addEventListener('click', function (){
-        adicionarTarefa();
-        renderizarTarefa();
+       adicionarTarefa();
     });
 
     inputTarefa.addEventListener('keypress', function (evento){
     
         if (evento.key === 'Enter'){
             adicionarTarefa();
-            renderizarTarefa();
+           
         }
     });
-    renderizarTarefa();
+
+    async function carregarTarefas() {
+        const resposta = await fetch('http://localhost:3000/tarefas');
+        const dados = await resposta.json();
+
+        tarefas = dados;
+
+        renderizarTarefa();
+    }
+    carregarTarefas();
