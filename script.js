@@ -3,6 +3,7 @@ let tarefas =[];
 const inputTarefa = document.getElementById('input-tarefa');
 const btnAdicionar = document.getElementById('btn-adicionar');
 const listaTarefas = document.getElementById('lista-de-tarefa');
+const API = 'http://localhost:3000';  
 
 async function adicionarTarefa() {
     const texto = inputTarefa.value.trim();
@@ -11,7 +12,7 @@ async function adicionarTarefa() {
         return;
     }
 
-    await fetch('http://localhost:3000/tarefas', {
+    await fetch(API + '/tarefas', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'  
@@ -41,7 +42,7 @@ function renderizarTarefa(){
         btnApagar.addEventListener('click', async function(evento){
             evento.stopPropagation();
 
-            await fetch('http://localhost:3000/tarefas/' + tarefa.id, {
+            await fetch(API + '/tarefas/' + tarefa.id, {
                 method: 'DELETE',
             });
 
@@ -51,7 +52,7 @@ function renderizarTarefa(){
         li.appendChild(btnApagar);
 
         li.addEventListener('click', async function (){
-            await fetch('http://localhost:3000/tarefas/' + tarefa.id, {
+            await fetch(API + '/tarefas/' + tarefa.id, {
                 method: 'PUT',
            
              });
@@ -76,7 +77,7 @@ function renderizarTarefa(){
     });
 
     async function carregarTarefas() {
-        const resposta = await fetch('http://localhost:3000/tarefas');
+        const resposta = await fetch(API + '/tarefas');
         const dados = await resposta.json();
 
         tarefas = dados;
