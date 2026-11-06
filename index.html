@@ -6,12 +6,25 @@
         <title>Minha lista de Tarefas</title>
     </head>
     <body>
+        <div id="tela-login">
+        <h1>Entrar</h1>
+        <input type="email" id="input-email" placeholder="E-mail" autocomplete="email">
+        <input type="password" id="input-senha" placeholder="Senha" autocomplete="current-password">
+        <button id="btn-entrar">Entrar</button>
+        <button id="btn-cadastrar">Criar conta</button>
+        <p id="mensagem"></p>
+    </div>
+
+    <div id="tela-tarefas" class="escondido">
         <h1>Minha lista de tarefas</h1>
+        <button id="btn-sair">Sair</button>
         <div class="nova-tarefa">
             <input type="text" id="input-tarefa" placeholder="Proxima tarefa">
             <button id="btn-adicionar">adicionar</button>
         </div>
-            <ul id="lista-de-tarefa"></ul>
-            <script src="script.js"></script>
-    </body>
+        <ul id="lista-de-tarefa"></ul>
+    </div>
+
+    <script src="script.js"></script>
+</body>
 </html>

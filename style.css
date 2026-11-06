@@ -53,3 +53,62 @@ body{
         font-weight: bold;
     }
 
+    .escondido {
+        display: none;
+    }
+    #tela-login {
+    max-width: 360px;
+    margin: 60px auto;
+    padding: 32px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+#tela-login h1 {
+    margin-top: 0;
+    font-size: 28px;
+}
+
+#tela-login input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+#tela-login button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#btn-entrar {
+    background: #4caf50;
+    color: white;
+}
+
+#btn-cadastrar {
+    background: #eeeeee;
+    color: #333333;
+}
+
+#mensagem {
+    text-align: center;
+    color: #d32f2f;
+    min-height: 20px;
+    margin: 8px 0 0;
+}
+
+#mensagem.sucesso {
+    color: #2e7d32;
+}
